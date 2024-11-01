@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+
+    const Singleton = (function () {
+        let instance = null;
+
+
+        return {
+            getInstance: function () {
+                if (instance === null) {
+                    let generatedObject = {};
+                    Object.defineProperty(generatedObject, "name", {
+                        writable: false,
+                        enumerable: false,
+                        value: "test",
+                        configurable: false
+                    });
+                    instance = generatedObject;
+                }
+                return instance;
+            }
+        }
+
+
+    })();
+
+
+    console.dir(Singleton.getInstance());
+    console.log(Singleton.getInstance());
+    console.log(Singleton.getInstance());
+
+
+</script>
+</body>
+</html>
