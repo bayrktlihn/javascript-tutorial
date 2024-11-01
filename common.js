@@ -1,3 +1,9 @@
+const ObjectUtil = {
+    isNullOrUndefined(val) {
+        return val === null || val === undefined;
+    }
+}
+
 const FormInputUtil = {
     isButton(el) {
         if (!el instanceof HTMLInputElement || !el instanceof HTMLButtonElement) {
@@ -8,7 +14,7 @@ const FormInputUtil = {
             return true;
         }
 
-        if (el instanceof HTMLInputElement && !!['submit', 'button', 'reset'].find(item => item === el.type)) {
+        if (el instanceof HTMLInputElement && ['submit', 'button', 'reset'].findIndex(item => item === el.type) < 0) {
             return true;
         }
 
@@ -22,6 +28,10 @@ const FormInputUtil = {
 
 const FormUtil = {
     getFormValues(form) {
+
+        if (ObjectUtil.isNullOrUndefined(form)) {
+            return null;
+        }
 
         let data = {};
 
