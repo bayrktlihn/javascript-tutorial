@@ -14,7 +14,7 @@ const FormInputUtil = {
             return true;
         }
 
-        if (el instanceof HTMLInputElement && ['submit', 'button', 'reset'].findIndex(item => item === el.type) < 0) {
+        if (el instanceof HTMLInputElement && ['submit', 'button', 'reset'].findIndex(item => item === el.type) >= 0) {
             return true;
         }
 
