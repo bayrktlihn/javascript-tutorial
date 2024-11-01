@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+        #myDiv {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 250px;
+            border: 20px solid #d0d0d0;
+            overflow-y: scroll;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="myDiv">
+</div>
+
+<div id="myInfo">
+
+</div>
+
+<script language="JavaScript" type="text/javascript">
+    let x;
+    let myDiv = document.querySelector("#myDiv");
+    let myInfo = document.querySelector("#myInfo");
+
+
+    myDiv.addEventListener("mouseenter", function (e) {
+        myDiv.innerHTML += `<div>mouseenter invoked!</div>`
+    });
+
+    myDiv.addEventListener("mouseout", function (e) {
+        myDiv.innerHTML += `<div>mouseout invoked!</div>`
+    });
+
+    myDiv.addEventListener("mouseover", function (e) {
+        myDiv.innerHTML += `<div>mouseover invoked!</div>`
+    });
+
+    myDiv.addEventListener("mousedown", function (e) {
+        myDiv.innerHTML += `<div>mousedown invoked!</div>`
+    });
+
+
+    myDiv.addEventListener("mousemove", function (e) {
+        let el = e.target;
+        x = el;
+        myInfo.innerHTML = `
+            <div>Screen(${e.screenX}, ${e.screenY})</div>
+            <div>Offset(${e.offsetX}, ${e.offsetY})</div>
+            <div>Layer(${e.layerX}, ${e.layerY})</div>
+            <div>Client(${e.clientX}, ${e.clientY})</div>
+            <div>Page(${e.pageX}, ${e.pageY})</div>
+            <hr>
+            <div>Offet Width: ${el.offsetHeight} Left: ${el.offsetLeft} Top: ${el.offsetTop} Width: ${el.offsetWidth}</div>
+            <div>Scroll Width: ${el.scrollHeight} Left: ${el.scrollLeft} Top: ${el.scrollTop} Width: ${el.scrollWidth}</div>
+            <div>Client Width: ${el.clientHeight} Left: ${el.clientLeft} Top: ${el.clientTop} Width: ${el.clientWidth}</div>
+            <div>Bounded Cliect Rect: ${JSON.stringify(el.getBoundingClientRect())}</div>
+
+        `
+    })
+
+
+</script>
+
+</body>
+</html>
