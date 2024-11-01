@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .myModal {
+            z-index: 9999;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            position: absolute;
+            top: 0;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .myModalContainer {
+            background-color: #fff;
+            padding: 1rem;
+            max-width: 80%;
+            min-width: 300px;
+            min-height: 300px;
+        }
+
+        .myModalHeader {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<button onclick="openModal(event)">Open Modal</button>
+
+<div class="myModal">
+    <div class="myModalContainer">
+        <div class="myModalHeader">
+            <button onclick="closeModal(event)">Close</button>
+        </div>
+
+        <div class="myModalContent">
+            <h1>Lorem ipsum dolor.</h1>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script>
+
+    class Modal {
+
+        #element;
+        #closeWhenOutputClick;
+
+        constructor(selector, closeWhenOutputClick) {
+            this.#element = document.querySelector(selector);
+
+            if (this.#element === null && this.#element === undefined) {
+                throw {};
+            }
+
+            this.#element.style.display = 'none';
+            this.#closeWhenOutputClick = closeWhenOutputClick;
+
+
+            const self = this;
+
+            if (self.#closeWhenOutputClick === true) {
+                self.#element.onclick = function (e) {
+                    if (e.target === self.#element) {
+                        self.close();
+                    }
+                }
+            }
+
+        }
+
+        open() {
+            this.#element.style.display = 'flex';
+        }
+
+        close() {
+            this.#element.style.display = 'none';
+        }
+
+    }
+
+    let modal = new Modal(".myModal", true);
+
+
+    function openModal(e) {
+        modal.open()
+    }
+
+    function closeModal(e) {
+        modal.close();
+    }
+
+
+</script>
+
+
+</body>
+</html>
